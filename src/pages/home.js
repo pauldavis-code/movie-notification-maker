@@ -11,6 +11,7 @@ class Home extends React.Component {
   state = {
     movie: "",
     title: "",
+    message: "",
     plot: ""
   }
 
@@ -35,7 +36,8 @@ class Home extends React.Component {
 
       this.setState({
         movie: "",
-        title: `${movie.Title} (${movie.Year})`,
+        title: `Movie Tonight - ${movie.Title} (${movie.Year})`,
+        message: `Join us at 8PM at Julie's Safari Theatre for tonight's showing of ${movie.Title}`,
         plot: movie.Plot
       })
     });
@@ -65,6 +67,7 @@ class Home extends React.Component {
 
             <Display 
               title={this.state.title}
+              message={this.state.message}
               plot={this.state.plot}
             />
           </div>
