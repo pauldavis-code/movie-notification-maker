@@ -21,25 +21,43 @@ class Home extends React.Component {
     this.setState({
       [name]:value
     });
-    // console.log(this.state.movie)
+    console.log(this.state.movie)
   };
 
   //submits form
   handleFormSubmit = event => {
+    // this.setState({
+    //   movie: "",
+    //   title: "",
+    //   message: "",
+    //   plot: ""
+    // })
     event.preventDefault();
-    // console.log(`Movie Title = ${this.state.movie}`)
     API.findMovie(this.state.movie).then(response => {
       let movie = response.data
-      console.log(movie)
-      console.log(`${movie.Title} (${movie.Year})` );
-      console.log(movie.Plot);
+      // console.log(movie)
+      // console.log(`${movie.Title} (${movie.Year})` );
+      // console.log(movie.Plot);
 
-      this.setState({
-        movie: "",
-        title: `Movie Tonight - ${movie.Title} (${movie.Year})`,
-        message: `Join us at 8PM at Julie's Safari Theatre for tonight's showing of ${movie.Title}`,
-        plot: movie.Plot
-      })
+      if (movie.Title !== undefined) {
+        this.setState({
+          movie: "",
+          title: `Movie Tonight - ${movie.Title} (${movie.Year})`,
+          message: `Join us at 8PM at Julie's Safari Theatre for tonight's showing of ${movie.Title}!`,
+          plot: movie.Plot
+        })
+      } else if (this.state.movie === "") {
+        this.setState({
+          movie: "",
+          title: "",
+          message: `Please enter a movie title`,
+          plot: ""
+        });
+      } else {
+        this.setState({
+          message: `"${this.state.movie}" is not a valid title. Please enter another and try again.`
+        });
+      };
     });
   };
 
@@ -49,8 +67,8 @@ class Home extends React.Component {
       <div>
         this.state.title
       </div>
-    )
-  }
+    );
+  };
 
   render() {
     return(
@@ -73,8 +91,8 @@ class Home extends React.Component {
           </div>
         </div>
       </div>
-    )    
-  }
-}
+    );    
+  };
+};
 
 export default Home;

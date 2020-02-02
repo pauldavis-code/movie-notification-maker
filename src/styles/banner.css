@@ -1,5 +1,8 @@
 #banner {
-  background-color: ghostwhite;
+  background-color: #C26EF7;
+  color: ghostwhite;
   height: 40vh;
-
-}
+  font-size: 8vh;
+  font-weight: bold;
+  text-align: right;
+};
